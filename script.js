@@ -43,7 +43,7 @@ function display() {
         titleElement.innerText = book.title;
         authorElement.innerText = book.author;
         pagesElement.innerText = book.pages;
-        readElement.innerText = book.read;
+        readElement.innerText = (book.read === "true") ? "Read" : "Not Read";
 
         cardElement.appendChild(titleElement);
         cardElement.appendChild(authorElement);
