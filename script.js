@@ -26,24 +26,24 @@ addBookToLibrary("Tomodachi Game", "Yuki Sato", "45", "false");
 addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "88", "true");
 
 function display() {
-    const container = document.querySelector(".book-container");
+    const container = document.querySelector('.book-container');
 
     myLibrary.forEach(book => {
-        const cardElement = document.createElement("div");
-        const topSectionElement = document.createElement("div");
-        const bottomSectionElement = document.createElement("div"); 
-        const titleElement = document.createElement("p");
-        const authorElement = document.createElement("p");
-        const pagesElement = document.createElement("p");
-        const readElement = document.createElement("p");
+        const cardElement = document.createElement('div');
+        const topSectionElement = document.createElement('div');
+        const bottomSectionElement = document.createElement('div'); 
+        const titleElement = document.createElement('p');
+        const authorElement = document.createElement('p');
+        const pagesElement = document.createElement('p');
+        const readElement = document.createElement('p');
 
-        cardElement.classList.add("card");
-        topSectionElement.classList.add("top-section");
-        bottomSectionElement.classList.add("bottom-section");
-        titleElement.classList.add("title");
-        authorElement.classList.add("author");
-        pagesElement.classList.add("pages");
-        readElement.classList.add("read");
+        cardElement.classList.add('card');
+        topSectionElement.classList.add('top-section');
+        bottomSectionElement.classList.add('bottom-section');
+        titleElement.classList.add('title');
+        authorElement.classList.add('author');
+        pagesElement.classList.add('pages');
+        readElement.classList.add('read');
 
         titleElement.innerText = book.title;
         authorElement.innerText = book.author;
@@ -64,3 +64,24 @@ function display() {
 }
 
 display();
+
+const dialog = document.querySelector('dialog');
+const form = document.querySelector('form');
+const openButton = document.querySelector('.show-dialog');
+const closeButton = document.querySelector('.cancel-button');
+const submitButton = document.querySelector('.submit-button');
+
+openButton.addEventListener('click', (e) => {
+    dialog.showModal();
+});
+
+closeButton.addEventListener('click', (e) => {
+    dialog.close();
+});
+
+submitButton.addEventListener('click', (e) => {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log(data);
+})
