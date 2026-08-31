@@ -8,8 +8,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="button-container">
-        <button class="show-dialog">New Book</button>
+    <div class="dialog-container">
+        <button class="dialog-button">New Book</button>
         <dialog>
             <form method="dialog">
                 <div>
@@ -24,15 +24,20 @@
 
                 <div>
                     <label for="form-pages">Pages:</label>
-                    <input id="form-pages" type="text" name="pages" required>
+                    <input id="form-pages" type="number" min="1" name="pages" required>
                 </div>
 
                 <div>
-                    <label for="form-read">Read</label>
-                    <input id="form-read" type="checkbox" name="read" value="true">
+                    <p>Read:</p>
+
+                    <input id="form-read-yes" type="radio" name="read" value="true" required>
+                    <label for="form-read-yes">Yes</label>
+
+                    <input id="form-read-no" type="radio" name="read" value="false">
+                    <label for="form-read-no">No</label>
                 </div>
 
-                <button class="cancel-button" type="submit" value="cancel">Cancel</button>
+                <button class="cancel-button" type="submit" value="cancel" formnovalidate>Cancel</button>
                 <button class="submit-button" type="submit" value="submit">Add</button>
             </form>
         </dialog>

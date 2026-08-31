@@ -1,5 +1,12 @@
 const myLibrary = [];
 
+const container = document.querySelector('.book-container');
+
+const dialog = document.querySelector('dialog');
+const form = document.querySelector('form');
+const openButton = document.querySelector('.dialog-button');
+const closeButton = document.querySelector('.cancel-button');
+
 function Book(title, author, pages, read) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
@@ -17,6 +24,8 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
+    container.replaceChildren();
+    display();
 }
 
 // Manually added books to test display
@@ -26,8 +35,6 @@ addBookToLibrary("Tomodachi Game", "Yuki Sato", "45", "false");
 addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "88", "true");
 
 function display() {
-    const container = document.querySelector('.book-container');
-
     myLibrary.forEach(book => {
         const cardElement = document.createElement('div');
         const topSectionElement = document.createElement('div');
@@ -63,25 +70,22 @@ function display() {
     });
 }
 
-display();
-
-const dialog = document.querySelector('dialog');
-const form = document.querySelector('form');
-const openButton = document.querySelector('.show-dialog');
-const closeButton = document.querySelector('.cancel-button');
-const submitButton = document.querySelector('.submit-button');
-
 openButton.addEventListener('click', (e) => {
     dialog.showModal();
 });
 
 closeButton.addEventListener('click', (e) => {
     dialog.close();
+    form.reset();
 });
 
-submitButton.addEventListener('click', (e) => {
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+dialog.addEventListener('close', (e) => {
+    if (dialog.returnValue === 'submit') {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
 
-    console.log(data);
-})
+        addBookToLibrary(data.title, data.author, data.pages, data.read);
+        form.reset();
+    }
+    dialog.returnValue = '';
+});
