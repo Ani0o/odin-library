@@ -21,6 +21,14 @@ function Book(title, author, pages, read) {
     }
 }
 
+Book.prototype.toggleRead = function () {
+    if (this.read === "true") {
+        this.read = "false";
+    } else {
+        this.read = "true";
+    }
+};
+
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
@@ -86,6 +94,19 @@ function display() {
 
     const readButtons = document.querySelectorAll('.read-button');
     const deleteButtons = document.querySelectorAll('.delete-button');
+
+    readButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const id = e.target.parentElement.getAttribute('data-id');
+
+            myLibrary.forEach((book) => {
+                if (book.id === id) {
+                    book.toggleRead();
+                }
+            });
+            display();
+        });
+    });
 
     deleteButtons.forEach((button) => {
         button.addEventListener('click', (e) => {
