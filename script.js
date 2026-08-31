@@ -36,6 +36,7 @@ addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "88", "true");
 
 function display() {
     myLibrary.forEach(book => {
+        const cardContainerElement = document.createElement('div');
         const cardElement = document.createElement('div');
         const topSectionElement = document.createElement('div');
         const bottomSectionElement = document.createElement('div'); 
@@ -43,7 +44,10 @@ function display() {
         const authorElement = document.createElement('p');
         const pagesElement = document.createElement('p');
         const readElement = document.createElement('p');
+        const readButtonElement = document.createElement('button');
+        const deleteButtonElement = document.createElement('button');
 
+        cardContainerElement.classList.add('card-container');
         cardElement.classList.add('card');
         topSectionElement.classList.add('top-section');
         bottomSectionElement.classList.add('bottom-section');
@@ -51,11 +55,15 @@ function display() {
         authorElement.classList.add('author');
         pagesElement.classList.add('pages');
         readElement.classList.add('read');
+        readButtonElement.classList.add('read-button');
+        deleteButtonElement.classList.add('delete-button');
 
         titleElement.innerText = book.title;
         authorElement.innerText = book.author;
         pagesElement.innerText = `Pages: ${book.pages}`;
         readElement.innerText = (book.read === "true") ? "Read" : "Not Read";
+        readButtonElement.innerText = (book.read === "true") ? "Not Read" : "Read";
+        deleteButtonElement.innerText = "Delete";
 
         topSectionElement.appendChild(titleElement);
         topSectionElement.appendChild(authorElement);
@@ -66,7 +74,11 @@ function display() {
         cardElement.appendChild(topSectionElement);
         cardElement.appendChild(bottomSectionElement);
 
-        container.appendChild(cardElement);
+        cardContainerElement.appendChild(cardElement);
+        cardContainerElement.appendChild(readButtonElement);
+        cardContainerElement.appendChild(deleteButtonElement);
+
+        container.appendChild(cardContainerElement);
     });
 }
 
