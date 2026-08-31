@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 const container = document.querySelector('.book-container');
 
@@ -24,7 +24,6 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    container.replaceChildren();
     display();
 }
 
@@ -35,6 +34,8 @@ addBookToLibrary("Tomodachi Game", "Yuki Sato", "45", "false");
 addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "88", "true");
 
 function display() {
+    container.replaceChildren();
+
     myLibrary.forEach(book => {
         const cardContainerElement = document.createElement('div');
         const cardElement = document.createElement('div');
@@ -58,6 +59,8 @@ function display() {
         readButtonElement.classList.add('read-button');
         deleteButtonElement.classList.add('delete-button');
 
+        cardContainerElement.setAttribute('data-id', `${book.id}`);
+
         titleElement.innerText = book.title;
         authorElement.innerText = book.author;
         pagesElement.innerText = `Pages: ${book.pages}`;
@@ -79,6 +82,24 @@ function display() {
         cardContainerElement.appendChild(deleteButtonElement);
 
         container.appendChild(cardContainerElement);
+    });
+
+    const readButtons = document.querySelectorAll('.read-button');
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const id = e.target.parentElement.getAttribute('data-id');
+
+            myLibrary = myLibrary.filter((book) => {
+                if (book.id === id) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            display();
+        });
     });
 }
 
