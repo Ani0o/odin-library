@@ -64,11 +64,14 @@ function display() {
         authorElement.classList.add('author');
         pagesElement.classList.add('pages');
         readElement.classList.add('read');
-        readButtonElement.classList.add('read-button');
         deleteButtonElement.classList.add('delete-button');
+        if (book.read === "true") {
+            readButtonElement.classList.add('unread-button');
+        } else {
+            readButtonElement.classList.add('read-button');
+        }
 
         cardContainerElement.setAttribute('data-id', `${book.id}`);
-        readButtonElement.setAttribute('style', (book.read === "true") ? "background-color: gray;" : "background-color: blue;")
 
         titleElement.innerText = book.title;
         authorElement.innerText = book.author;
@@ -93,7 +96,7 @@ function display() {
         container.appendChild(cardContainerElement);
     });
 
-    const readButtons = document.querySelectorAll('.read-button');
+    const readButtons = document.querySelectorAll('.read-button, .unread-button');
     const deleteButtons = document.querySelectorAll('.delete-button');
 
     readButtons.forEach((button) => {
