@@ -36,10 +36,10 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 // Manually added books to test display
-addBookToLibrary("Bleach", "Kubo", "95", "true");
-addBookToLibrary("Demon Slayer", "Koyoharu Gotouge", "55", "true");
-addBookToLibrary("Tomodachi Game", "Yuki Sato", "45", "false");
-addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "88", "true");
+addBookToLibrary("Bleach", "Kubo", "14000", "true");
+addBookToLibrary("Demon Slayer", "Koyoharu Gotouge", "4496", "true");
+addBookToLibrary("Tomodachi Game", "Yuki Sato", "5100", "false");
+addBookToLibrary("Tokyo Ghoul", "Sui Ishida", "6670", "true");
 
 function display() {
     container.replaceChildren();
@@ -133,8 +133,8 @@ openButton.addEventListener('click', (e) => {
 });
 
 closeButton.addEventListener('click', (e) => {
-    dialog.close();
     form.reset();
+    dialog.close();
 });
 
 dialog.addEventListener('close', (e) => {

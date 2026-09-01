@@ -13,9 +13,13 @@ p {
     margin: 0;
 }
 
-button {
+button, input {
   font-family: inherit;
+  font-size: 100%;
 }
+
+
+/* Header Section */
 
 .dialog-container {
     width: 100%;
@@ -26,6 +30,8 @@ button {
     justify-content: space-between;
     align-items: center;
 }
+
+/* Hero Text */
 
 .dialog-container > div {
     margin-left: 2vw;
@@ -42,6 +48,8 @@ button {
     font-weight: bold;
     color: white;
 }
+
+/* New Book Button */
 
 .dialog-button {
     font-size: calc(0.2rem + 0.6vw + 0.6vh);
@@ -77,6 +85,114 @@ form div:last-of-type p {
     display: inline-block;
 }
 
+/* Dialog Section */
+
+dialog {
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgb(255, 254, 249);
+}
+
+form {
+    height: 50vh;
+    width: 22vw;
+    font-size: calc(0.4rem + 0.6vw + 0.6vh);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form Controls */
+
+form > div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    gap: 8%;
+}
+
+form > div:first-of-type > div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 500;
+}
+
+input[type="text"], input[type="number"] {
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 2px 0;
+    padding-left: 10px;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border: 2px solid rgb(0, 187, 187);
+}
+
+input[type="text"]:user-invalid, input[type="number"]:user-invalid {
+    border: 2px solid rgb(255, 87, 137);
+}
+
+/* Form radio buttons */
+
+form > div:first-of-type > div:last-of-type div p {
+    margin-right: 10%;
+    font-weight: 500;
+}
+
+form > div:first-of-type > div:last-of-type div label {
+    margin-right: 5%;
+}
+
+input[type="radio"] {
+    accent-color: rgb(0, 174, 174);
+}
+
+/* Form Buttons */
+
+form > div:last-of-type {
+    margin-top: auto;
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+}
+
+.cancel-button, .submit-button {
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.submit-button {
+    background-color: rgb(0, 174, 174);
+}
+
+.submit-button:hover {
+    background-color: rgb(0, 194, 194);
+}
+
+.submit-button:active {
+    background-color: rgb(0, 154, 154);
+}
+
+.cancel-button {
+    background-color: aliceblue;
+}
+
+.cancel-button:hover {
+    background-color: rgb(159, 255, 255);
+}
+
+.cancel-button:active {
+    background-color: rgb(117, 209, 209);
+}
+
+
+/* Main Section */
+
 .book-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -93,6 +209,8 @@ form div:last-of-type p {
     grid-template-rows: 40vh 9vh;
     gap: 4% 2%;
 }
+
+/* Card Styling */
 
 .card {
     border: 4px solid black;
@@ -148,7 +266,10 @@ form div:last-of-type p {
     border-radius: 10px;
     font-size: calc(0.2rem + 0.6vw + 0.6vh);
     font-weight: 500;
+    cursor: pointer;
 }
+
+/* Card read and delete button Styling */
 
 .read-button {
     background-color: rgb(0, 174, 174);

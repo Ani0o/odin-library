@@ -25,32 +25,38 @@
         <dialog>
             <form method="dialog">
                 <div>
-                    <label for="form-title">Title:</label>
-                    <input id="form-title" type="text" name="title" required>
+                    <div>
+                        <label for="form-title">Title:</label>
+                        <input id="form-title" type="text" name="title" required>
+                    </div>
+
+                    <div>
+                        <label for="form-author">Author:</label>
+                        <input id="form-author" type="text" name="author" required>
+                    </div>
+
+                    <div>
+                        <label for="form-pages">Pages:</label>
+                        <input id="form-pages" type="number" min="1" name="pages" required>
+                    </div>
+
+                    <div>
+                        <div>
+                            <p>Read:</p>
+                        
+                            <input id="form-read-yes" type="radio" name="read" value="true" required>
+                            <label for="form-read-yes">Yes</label>
+
+                            <input id="form-read-no" type="radio" name="read" value="false">
+                            <label for="form-read-no">No</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
-                    <label for="form-author">Author:</label>
-                    <input id="form-author" type="text" name="author" required>
+                    <button class="cancel-button" type="button" value="cancel" formnovalidate>Cancel</button>
+                    <button class="submit-button" type="submit" value="submit">Add</button>
                 </div>
-
-                <div>
-                    <label for="form-pages">Pages:</label>
-                    <input id="form-pages" type="number" min="1" name="pages" required>
-                </div>
-
-                <div>
-                    <p>Read:</p>
-
-                    <input id="form-read-yes" type="radio" name="read" value="true" required>
-                    <label for="form-read-yes">Yes</label>
-
-                    <input id="form-read-no" type="radio" name="read" value="false">
-                    <label for="form-read-no">No</label>
-                </div>
-
-                <button class="cancel-button" type="submit" value="cancel" formnovalidate>Cancel</button>
-                <button class="submit-button" type="submit" value="submit">Add</button>
             </form>
         </dialog>
     </div>
