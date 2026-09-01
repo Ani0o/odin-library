@@ -68,12 +68,13 @@ function display() {
         deleteButtonElement.classList.add('delete-button');
 
         cardContainerElement.setAttribute('data-id', `${book.id}`);
+        readButtonElement.setAttribute('style', (book.read === "true") ? "background-color: gray;" : "background-color: blue;")
 
         titleElement.innerText = book.title;
         authorElement.innerText = book.author;
         pagesElement.innerText = `Pages: ${book.pages}`;
         readElement.innerText = (book.read === "true") ? "Read" : "Not Read";
-        readButtonElement.innerText = (book.read === "true") ? "Not Read" : "Read";
+        readButtonElement.innerText = (book.read === "true") ? "Unread" : "Read";
         deleteButtonElement.innerText = "Delete";
 
         topSectionElement.appendChild(titleElement);
