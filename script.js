@@ -7,27 +7,27 @@ const form = document.querySelector('form');
 const openButton = document.querySelector('.dialog-button');
 const closeButton = document.querySelector('.cancel-button');
 
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
+class Book {
+    constructor(title, author, pages, read) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function() {
-        return `The ${title} by ${author}, ${pages} pages, ${(this.read === "true") ? "have read" : "not read yet"}`;
+    
+    info() {
+        return `The ${this.title} by ${this.author}, ${this.pages} pages, ${(this.read === "true") ? "have read" : "not read yet"}`;
+    }
+
+    toggleRead() {
+        if (this.read === "true") {
+            this.read = "false";
+        } else {
+            this.read = "true";
+        }
     }
 }
-
-Book.prototype.toggleRead = function () {
-    if (this.read === "true") {
-        this.read = "false";
-    } else {
-        this.read = "true";
-    }
-};
 
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
