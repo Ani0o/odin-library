@@ -128,6 +128,14 @@ function display() {
     });
 }
 
+const title = document.getElementById('form-title');
+const author = document.getElementById('form-author');
+const pages = document.getElementById('form-pages');
+
+const titleError = document.querySelector('#form-title + span.error');
+const authorError = document.querySelector('#form-author + span.error');
+const pagesError = document.querySelector('#form-pages + span.error');
+
 openButton.addEventListener('click', (e) => {
     dialog.showModal();
 });
@@ -135,15 +143,88 @@ openButton.addEventListener('click', (e) => {
 closeButton.addEventListener('click', (e) => {
     form.reset();
     dialog.close();
+    titleError.textContent = "";
+    titleError.className = "error";
+    authorError.textContent = "";
+    authorError.className = "error";
+    pagesError.textContent = "";
+    pagesError.className = "error";
 });
 
-dialog.addEventListener('close', (e) => {
-    if (dialog.returnValue === 'submit') {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        addBookToLibrary(data.title, data.author, data.pages, data.read);
-        form.reset();
+form.addEventListener('submit', (event) => {
+    if (!title.validity.valid) {
+        showTitleError();
+        event.preventDefault();
+        return;
+    } else if (!author.validity.valid) {
+        showAuthorError();
+        event.preventDefault();
+        return;
+    } else if (!pages.validity.valid) {
+        showPagesError();
+        event.preventDefault();
+        return;
     }
-    dialog.returnValue = '';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    addBookToLibrary(data.title, data.author, data.pages, data.read);
+    form.reset();
+});
+
+function showTitleError() {
+    if (title.validity.valueMissing) {
+        titleError.textContent = "The book name must be filled!";
+    } else if (title.validity.typeMismatch) {
+        titleError.textContent = "Entered value needs to be text.";
+    }
+    titleError.className = "error active";
+}
+
+function showAuthorError() {
+    if (author.validity.valueMissing) {
+        authorError.textContent = "The author name must be filled!";
+    } else if (author.validity.typeMismatch) {
+        authorError.textContent = "Entered value needs to be text.";
+    }
+    authorError.className = "error active";
+}
+
+function showPagesError() {
+    if (pages.validity.valueMissing) {
+        pagesError.textContent = "The number of pages must be filled!";
+    } else if (pages.validity.typeMismatch) {
+        pagesError.textContent = "Entered value needs to be a number.";
+    } else if (pages.validity.rangeUnderflow) {
+        pagesError.textContent = `Number of pages should be at least ${pages.min}; you entered ${pages.value}.`;
+    }
+    pagesError.className = "error active";
+}
+
+title.addEventListener('input', (event) => {
+    if (title.validity.valid) {
+        titleError.textContent = "";
+        titleError.className = "error";
+    } else {
+        showTitleError();
+    }
+});
+
+author.addEventListener('input', (event) => {
+    if (author.validity.valid) {
+        authorError.textContent = "";
+        authorError.className = "error";
+    } else {
+        showAuthorError();
+    }
+});
+
+pages.addEventListener('input', (event) => {
+    if (pages.validity.valid) {
+        pagesError.textContent = "";
+        pagesError.className = "error";
+    } else {
+        showPagesError();
+    }
 });

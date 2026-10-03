@@ -94,7 +94,7 @@ dialog {
 }
 
 form {
-    height: 50vh;
+    height: 60vh;
     width: 22vw;
     font-size: calc(0.4rem + 0.6vw + 0.6vh);
 
@@ -102,12 +102,28 @@ form {
     flex-direction: column;
 }
 
+.error {
+  width: 100%;
+  padding: 0;
+
+  font-size: calc(0.1rem + 0.5vw + 0.5vh);
+  color: white;
+  background-color: #990000;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
 /* Form Controls */
 
 form > div:first-of-type {
     display: flex;
     flex-direction: column;
-    gap: 8%;
+    gap: 5%;
 }
 
 form > div:first-of-type > div {
